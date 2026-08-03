@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h2>Devolução</h2>
+
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Código do livro</label>
+    <input type="text" name="codigo_livro" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-success">Registrar devolução</button>
+  <a href="{{ url_for('listar_livros') }}" class="btn btn-secondary">Voltar</a>
+</form>
+{% endblock %}

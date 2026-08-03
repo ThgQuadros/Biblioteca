@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h2>Novo empréstimo</h2>
+
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Livro</label>
+    <select name="codigo_livro" class="form-select" required>
+      {% for codigo, titulo in livros %}
+      <option value="{{ codigo }}">{{ titulo }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Usuário</label>
+    <select name="matricula_usuario" class="form-select" required>
+      {% for matricula, nome in usuarios %}
+      <option value="{{ matricula }}">{{ nome }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-success">Salvar</button>
+  <a href="{{ url_for('listar_livros') }}" class="btn btn-secondary">Voltar</a>
+</form>
+{% endblock %}

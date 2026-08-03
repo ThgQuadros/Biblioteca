@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<div class="card-soft p-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">Livros</h2>
+            <p class="text-muted mb-0">Consulta e organiza o acervo da biblioteca.</p>
+        </div>
+        <div>
+            <a class="btn btn-primary-custom mb-2 mb-sm-0" href="{{ url_for('novo_livro') }}">Novo Livro</a>
+            <a class="btn btn-outline-secondary mb-2 mb-sm-0" href="{{ url_for('novo_emprestimo') }}">Novo Empréstimo</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('devolver_livro') }}">Devolução</a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Ano</th>
+                    <th>Status</th>
+                    <th>Usuário</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for codigo, titulo, autor, ano, emprestado, usuario_matricula in livros %}
+                <tr>
+                    <td>{{ codigo }}</td>
+                    <td>{{ titulo }}</td>
+                    <td>{{ autor }}</td>
+                    <td>{{ ano or "" }}</td>
+                    <td>
+                        {% if emprestado %}
+                        <span class="badge bg-danger">Emprestado</span>
+                        {% else %}
+                        <span class="badge bg-success">Disponível</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ usuario_matricula or "" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
